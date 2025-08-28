@@ -5,6 +5,12 @@ Insurance Eligibility Verification System - Coding Exercise
 
 Node.js/TypeScript
 
+### Libraries:
+- cors
+- dotenv
+- express
+- pg
+
 ## Database
 
 PostgreSQL

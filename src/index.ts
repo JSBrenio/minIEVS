@@ -1,3 +1,4 @@
+import 'dotenv/config'; // read all variables from .env
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 

@@ -1,0 +1,35 @@
+services:
+  # Node.js Application
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+        target: base
+    env_file:
+        - .env-docker
+    volumes:
+        - ./src:/usr/src/app/src
+        - ./nodemon.json:/usr/src/app/nodemon.json
+    container_name: app
+    ports:
+        - '4000:4000'
+    depends_on:
+        - db
+    command: npm run dev
+
+  # PostgreSQL Database
+  db:
+    image: postgres:latest
+    ports:
+      - "${PGPORT:-5432}:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: ${PGDATABASE:-minievs}
+      POSTGRES_USER: ${PGUSER:-postgres}
+      POSTGRES_PASSWORD: ${PGPASSWORD:-password}
+    container_name: db
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+      - ./data/eligibility.csv:/docker-entrypoint-initdb.d/eligibility.csv
+      - ./data/patients.csv:/docker-entrypoint-initdb.d/patients.csv
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql

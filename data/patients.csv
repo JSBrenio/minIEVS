@@ -1,6 +1,6 @@
-patient_id,name,date_of_birth,insurance_member_id,insurance_company_name,service_date
-P123456,John Doe,1985-03-15,MBR001,HealthPlan USA,2024-02-01
-P123457,Jane Smith,1990-07-22,MBR002,MediCare Plus,2024-02-01
-P123458,Robert Johnson,1978-11-10,MBR003,Insurance Corp,2024-02-01
-P123459,Sarah Wilson,1982-09-08,MBR004,BlueCross BlueShield,2024-02-15
-P123460,Michael Brown,1975-12-03,INS789012,Aetna Health,2024-02-15
+patient_id,name,date_of_birth
+P123456,John Doe,1985-03-15
+P123457,Jane Smith,1990-07-22
+P123458,Robert Johnson,1978-11-10
+P123459,Sarah Wilson,1982-09-08
+P123460,Michael Brown,1975-12-03

@@ -1,6 +1,6 @@
 eligibility_id,patient_id,check_date_time,status,deductible,deductible_met,copay,out_of_pocket_max,out_of_pocket_met,errors
 ELG-2024-001,P123456,2024-02-01T10:30:00Z,Active,1500.00,750.00,25.00,5000.00,1200.00,[]
 ELG-2024-002,P123457,2024-02-01T11:15:00Z,Active,2000.00,500.00,30.00,6000.00,800.00,[]
-ELG-2024-003,P123458,2024-02-01T14:45:00Z,Inactive,1000.00,0.00,20.00,4000.00,0.00,"[{""code"": ""AUTH001"", ""message"": ""Authorization required""}]"
+ELG-2024-003,P123458,2024-02-01T14:45:00Z,Inactive,1000.00,0.00,20.00,4000.00,0.00,"[{""code"": ""EXPIRED INSURANCE"", ""message"": ""Patient has no active insurance coverage.""}]"
 ELG-2024-004,P123459,2024-02-15T09:00:00Z,Active,1200.00,600.00,20.00,4500.00,900.00,[]
-ELG-2024-005,P123460,2024-02-15T16:30:00Z,Unknown,1800.00,0.00,35.00,5500.00,0.00,"[{""code"": ""NET001"", ""message"": ""Network timeout""}]"
+ELG-2024-005,P123460,2024-02-15T16:30:00Z,Unknown,1800.00,0.00,35.00,5500.00,0.00,"[{""code"": ""NO INSURANCE"", ""message"": ""Patient has no active insurance coverage.""}]"

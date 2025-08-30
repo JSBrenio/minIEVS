@@ -8,13 +8,16 @@ services:
     env_file:
         - .env-docker
     volumes:
-        - ./src:/usr/src/app/src
-        - ./nodemon.json:/usr/src/app/nodemon.json
+        - ./:/usr/src/app
+        - /usr/src/app/node_modules
     container_name: app
     ports:
         - '4000:4000'
     depends_on:
         - db
+    environment:
+        - CHOKIDAR_USEPOLLING=true
+        - CHOKIDAR_INTERVAL=1000
     command: npm run dev
 
   # PostgreSQL Database
@@ -23,6 +26,8 @@ services:
     ports:
       - "${PGPORT:-5432}:5432"
     restart: always
+    env_file:
+        - .env-docker
     environment:
       POSTGRES_DB: ${PGDATABASE:-minievs}
       POSTGRES_USER: ${PGUSER:-postgres}
@@ -30,6 +35,6 @@ services:
     container_name: db
     volumes:
       - ~/apps/postgres:/var/lib/postgresql/data
-      - ./data/eligibility.csv:/docker-entrypoint-initdb.d/eligibility.csv
-      - ./data/patients.csv:/docker-entrypoint-initdb.d/patients.csv
       - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/patients.csv:/data/patients.csv
+      - ./data/eligibility.csv:/data/eligibility.csv

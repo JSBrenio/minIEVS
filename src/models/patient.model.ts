@@ -1,4 +1,5 @@
 // Patient model interfaces for the Insurance Eligibility Verification System
+import { Request } from "express";
 
 /**
  * Core patient demographic information interface
@@ -22,6 +23,11 @@ interface IPatient {
     dateOfBirth: string; // ISO date string (YYYY-MM-DD)
 }
 
+interface IPatientPostRequest extends Request {
+    body: IPatient
+}
+
 export { 
     IPatient,
+    IPatientPostRequest
 };

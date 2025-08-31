@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IEligibilityCheckRequest, IEligibilityCheck } from '../models';
+import { IEligibilityCheckRequest, IEligibilityCheck, IPatientPostRequest } from '../models';
 
 /**
  * Middleware to validate patient ID parameter in routes
@@ -32,13 +32,13 @@ export const validatePatientIdParam = (
  * Middleware to validate patient data for POST/PUT requests
  */
 export const validatePatientData = (
-  req: Request, 
+  req: IPatientPostRequest, 
   res: Response, 
   next: NextFunction
 ) => {
   try {
-    const { patientId, name, dateOfBirth } = req.body;
-
+    const { patientId, patientName, dateOfBirth } = req.body;
+    console.log(req.body);
     if (!patientId || typeof patientId !== 'string') {
       return res.status(400).json({
         error: 'Validation Error',
@@ -46,7 +46,7 @@ export const validatePatientData = (
       });
     }
 
-    if (!name || typeof name !== 'string') {
+    if (!patientName || typeof patientName !== 'string') {
       return res.status(400).json({
         error: 'Validation Error',
         message: 'Patient name is required and must be a string'

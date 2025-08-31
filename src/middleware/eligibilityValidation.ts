@@ -52,13 +52,23 @@ export const validateEligibilityCheckRequest = (
     }
 
     // Validate date formats
+    const currDate: Date = new Date()
+    currDate.setHours(0, 0, 0, 0); 
+    const dob: Date = new Date(dateOfBirth); 
+    const sd: Date = new Date(serviceDate);
+
     if (isNaN(Date.parse(dateOfBirth))) {
       return res.status(400).json({
         error: 'Validation Error',
         message: 'Invalid date of birth format. Expected ISO date string (YYYY-MM-DD)'
       });
+    } else if (+dob > +currDate || +dob > +sd) {
+       return res.status(400).json({
+        error: 'Validation Error',
+        message: 'Invalid date. Not possible.'
+      });
     }
-
+    
     if (isNaN(Date.parse(serviceDate))) {
       return res.status(400).json({
         error: 'Validation Error',

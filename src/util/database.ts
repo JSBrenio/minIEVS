@@ -121,7 +121,7 @@ export async function getPatientHistory(patientId: string): Promise<IEligibility
       outOfPocketMax: parseFloat(row.out_of_pocket_max || 0),
       outOfPocketMet: parseFloat(row.out_of_pocket_met || 0)
     } : undefined,
-    errors: JSON.parse(row.errors || '[]')
+    errors: row.errors
   }));
 }
 

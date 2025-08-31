@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS eligibility (
 
     -- Insurance information
     insurance_member_id VARCHAR(50),
-    insurance_company_name VARCHAR(200),
+    insurance_company VARCHAR(200),
     service_date DATE NOT NULL,
     
     -- Result

@@ -17,7 +17,7 @@ export const validateEligibilityCheckRequest = (
       patientName, 
       dateOfBirth,
       insuranceMemberId,
-      insuranceCompanyName,
+      insuranceCompany,
       serviceDate 
     } = requestBody;
 
@@ -74,7 +74,7 @@ export const validateEligibilityCheckRequest = (
       });
     }
 
-    if (insuranceCompanyName && typeof insuranceCompanyName !== 'string') {
+    if (insuranceCompany && typeof insuranceCompany !== 'string') {
       return res.status(400).json({
         error: 'Validation Error',
         message: 'Insurance company name must be a string if provided'

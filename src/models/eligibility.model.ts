@@ -63,7 +63,7 @@ interface ICoverage {
  * @property {string} patientId - Patient identifier this eligibility check belongs to
  * @property {string} checkDateTime - When the eligibility verification was performed (ISO 8601 timestamp)
  * @property {string} [insuranceMemberId] - Insurance member ID used for verification (may differ from patientId)
- * @property {string} [insuranceCompanyName] - Name of the insurance company/provider that was checked
+ * @property {string} [insuranceCompany] - Name of the insurance company/provider that was checked
  * @property {'Active' | 'Inactive' | 'Unknown'} status - Current eligibility status determined from insurance verification
  * @property {ICoverage} [coverage] - Detailed coverage information (only available when status is Active)
  * @property {IEligibilityError[]} [errors] - Array of errors encountered during verification process
@@ -95,7 +95,7 @@ interface IEligibilityResult {
     /** Insurance member ID used for verification (may differ from patientId) */
     insuranceMemberId?: string;
     /** Name of the insurance company/provider that was checked */
-    insuranceCompanyName?:string;
+    insuranceCompany?:string;
     /** Current eligibility status determined from insurance verification */
     status: 'Active' | 'Inactive' | 'Unknown';
     /** Detailed coverage information (only available when status is Active) */
@@ -114,7 +114,7 @@ interface IEligibilityResult {
  * @property {string} patientName - Patient's full name (inherited from IPatient)
  * @property {string} dateOfBirth - Patient's date of birth in ISO format (inherited from IPatient)
  * @property {string} [insuranceMemberId] - Insurance member ID for verification lookup (may be different from patientId)
- * @property {string} [insuranceCompanyName] - Insurance company name to verify coverage with
+ * @property {string} [insuranceCompany] - Insurance company name to verify coverage with
  * @property {string} serviceData - Date/time of the service requiring eligibility verification (ISO timestamp)
  * @example
  * {
@@ -130,7 +130,7 @@ interface IEligibilityCheck extends IPatient {
     /** Insurance member ID for verification lookup (may be different from patientId) */
     insuranceMemberId?: string;
     /** Insurance company name to verify coverage with */
-    insuranceCompanyName?: string;
+    insuranceCompany?: string;
     /** Date/time of the service requiring eligibility verification (ISO timestamp) */
     serviceDate: string; // ISO timeSTAMP
 }

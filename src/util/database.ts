@@ -59,7 +59,7 @@ export async function saveEligibilityCheck(result: IEligibilityResult): Promise<
       patient_id, 
       check_date_time, 
       insurance_member_id, 
-      insurance_company_name, 
+      insurance_company, 
       service_date, 
       status, 
       deductible, 
@@ -76,7 +76,7 @@ export async function saveEligibilityCheck(result: IEligibilityResult): Promise<
       result.patientId,
       result.checkDateTime,
       result.insuranceMemberId || null,
-      result.insuranceCompanyName || null,
+      result.insuranceCompany || null,
       result.checkDateTime.split('T')[0], // Extract date from timestamp for service_date
       result.status,
       result.coverage?.deductible || null,
@@ -112,7 +112,7 @@ export async function getPatientHistory(patientId: string): Promise<IEligibility
     patientId: row.patient_id,
     checkDateTime: row.check_date_time,
     insuranceMemberId: row.insurance_member_id,
-    insuranceCompanyName: row.insurance_company_name,
+    insuranceCompany: row.insurance_company,
     status: row.status,
     coverage: row.deductible !== null ? {
       deductible: parseFloat(row.deductible),
@@ -157,7 +157,7 @@ export async function getAllEligibilityChecks(): Promise<IEligibilityResult[]> {
     patientId: row.patient_id,
     checkDateTime: row.check_date_time,
     insuranceMemberId: row.insurance_member_id,
-    insuranceCompanyName: row.insurance_company_name,
+    insuranceCompany: row.insurance_company,
     status: row.status,
     coverage: row.deductible !== null ? {
       deductible: parseFloat(row.deductible),

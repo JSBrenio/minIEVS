@@ -1,0 +1,78 @@
+{
+  "API_FAILURES": [
+    {
+      "code": "TIMEOUT_ERROR",
+      "message": "Insurance company API request timed out after 30 seconds"
+    },
+    {
+      "code": "CONNECTION_REFUSED",
+      "message": "Unable to connect to insurance company API server"
+    },
+    {
+      "code": "RATE_LIMIT_EXCEEDED",
+      "message": "Too many requests to insurance API. Please try again later"
+    },
+    {
+      "code": "API_MAINTENANCE",
+      "message": "Insurance company API is currently under maintenance"
+    },
+    {
+      "code": "INVALID_API_KEY",
+      "message": "Authentication failed with insurance company API"
+    },
+    {
+      "code": "SERVICE_UNAVAILABLE",
+      "message": "Insurance verification service is temporarily unavailable"
+    }
+  ],
+  "NOT_ELIGIBLE": [
+    {
+      "code": "EXPIRED_INSURANCE",
+      "message": "Patient's insurance policy has expired"
+    },
+    {
+      "code": "NO_INSURANCE",
+      "message": "Patient has no active insurance coverage"
+    },
+    {
+      "code": "POLICY_SUSPENDED",
+      "message": "Insurance policy is suspended due to non-payment"
+    },
+    {
+      "code": "COVERAGE_TERMINATED",
+      "message": "Insurance coverage was terminated by the employer"
+    },
+    {
+      "code": "INVALID_MEMBER_ID",
+      "message": "Insurance member ID is invalid or not found"
+    },
+    {
+      "code": "PLAN_NOT_ACTIVE",
+      "message": "Insurance plan is not active for the service date requested"
+    },
+    {
+      "code": "COVERAGE_EXHAUSTED",
+      "message": "Annual coverage limit has been reached"
+    },
+    {
+      "code": "WAITING_PERIOD",
+      "message": "Patient is in waiting period for this type of coverage"
+    }
+  ],
+  "VERIFICATION_ISSUES": [
+    {
+      "code": "MEMBER_INFO_MISMATCH",
+      "message": "Patient information does not match insurance records"
+    },
+    {
+      "code": "DATE_OF_BIRTH_MISMATCH",
+      "message": "Date of birth does not match insurance company records"
+    }
+  ],
+  "UNKNOWN_INSURANCE": [
+    {
+      "code": "UNKNOWN_INSURANCE",
+      "message": "Insurance company not recognized in our system"
+    }
+  ]
+}

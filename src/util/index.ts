@@ -1,3 +1,2 @@
-import { pool } from "./sql_conn";
-
-export { pool }
+export { pool } from './sql_conn';
+export * from './database';

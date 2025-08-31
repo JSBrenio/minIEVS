@@ -17,7 +17,7 @@ interface IPatient {
     /** Unique patient identifier used throughout the system (e.g., P123456) */
     patientId: string;
     /** Patient's full name as it appears in medical records */
-    name: string;
+    patientName: string;
     /** Patient's date of birth in ISO format (YYYY-MM-DD) - required for insurance verification */
     dateOfBirth: string; // ISO date string (YYYY-MM-DD)
 }

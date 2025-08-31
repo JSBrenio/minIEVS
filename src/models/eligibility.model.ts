@@ -111,7 +111,7 @@ interface IEligibilityResult {
  * @interface IEligibilityCheck
  * @extends IPatient
  * @property {string} patientId - Unique patient identifier (inherited from IPatient)
- * @property {string} name - Patient's full name (inherited from IPatient)
+ * @property {string} patientName - Patient's full name (inherited from IPatient)
  * @property {string} dateOfBirth - Patient's date of birth in ISO format (inherited from IPatient)
  * @property {string} [insuranceMemberId] - Insurance member ID for verification lookup (may be different from patientId)
  * @property {string} [insuranceCompanyName] - Insurance company name to verify coverage with

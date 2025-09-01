@@ -9,9 +9,15 @@ export class EligibilityService {
     this.mockInsurance = new MockInsuranceService();
   }
   
+  /**
+   * Checks a patient's eligibility given patient data and insurance information
+   *  
+   * @param request: IEligibilityCheckRequest
+   * @returns IEligibilityResult
+   */
   async checkEligibility(request: IEligibilityCheckRequest): Promise<IEligibilityResult> {
     const { patientId, patientName, dateOfBirth } = request.body;
-    // Add patient info using utility function (will throw error if patient already exists)
+    // Add patient info using utility function (will throw error if patientId already exists with mismatched data)
     try {
       await addPatient({
         patientId: patientId,
@@ -32,10 +38,21 @@ export class EligibilityService {
     return result;
   }
   
+  /**
+   * Get a patient's eligiblity history from a patient's patientid
+   * 
+   * @param patientId 
+   * @returns IEligibilityResult[]
+   */
   async getPatientEligibilityHistory(patientId: string): Promise<IEligibilityResult[]> {
     return await getPatientHistory(patientId);
   }
 
+  /**
+   * Get all eligibility checks
+   * 
+   * @returns IElgibilityResult[]
+   */
   async getAllEligibilityChecks(): Promise<IEligibilityResult[]> {
     return await getAllEligibilityChecks(); 
   }

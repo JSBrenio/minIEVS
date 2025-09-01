@@ -26,6 +26,11 @@ export class MockInsuranceService {
     'BlueCross BlueShield'
   ];
 
+  /**
+   * Mock API simulates eligiblity for a patient's data randomly.
+   * @param request 
+   * @returns 
+   */
   async simulateEligibilty(request: IEligibilityCheckRequest): Promise<IEligibilityResult> {
     
     const { 

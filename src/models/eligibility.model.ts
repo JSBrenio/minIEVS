@@ -11,7 +11,7 @@ import { IPatient } from "./patient.model";
  * @property {string} message - Expanded error description explaining what went wrong
  * @example
  * {
- *   "code": "INS001",
+ *   "code": "INSURANCE_EXPIRED",
  *   "message": "Insurance policy expired on 2023-12-31"
  * }
  */

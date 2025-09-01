@@ -23,6 +23,16 @@ interface IPatient {
     dateOfBirth: string; // ISO date string (YYYY-MM-DD)
 }
 
+/**
+ * IPatient interface for POST requests 
+ * @interface IPatientPostRequest
+ * @example
+ * body: {
+ *   "patientId": "P123456",
+ *   "name": "John Doe",
+ *   "dateOfBirth": "1985-03-15"
+ * }
+ */
 interface IPatientPostRequest extends Request {
     body: IPatient
 }

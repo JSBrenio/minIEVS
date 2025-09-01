@@ -29,15 +29,17 @@ export async function addPatient(patient: IPatient): Promise<void> {
   
   try {
 
-    // Case 1 & 2
+    // Case 1
     const potentialPatient: any  = await pool.query(query, values);
    
-    // Case 3
+    // Case 2
     if (potentialPatient.rows.length === 0) {
       const existingPatient = await pool.query(
         `SELECT * FROM patients WHERE patient_id = $1`,
         [patientId]
       );
+
+      // Case 3
       if (existingPatient.rows[0].name !== patientName) throw new Error("Name Doesn't Match");
       if (existingPatient.rows[0].date_of_birth.toISOString().slice(0, 10) !== dateOfBirth) throw new Error("Date of Birth Doesn't Match")
     }
@@ -127,6 +129,7 @@ export async function getPatientHistory(patientId: string): Promise<IEligibility
 
 /**
  * Get ALL patients' information
+ * @returns IPatient[]
  */
 export async function getAllPatients(): Promise<IPatient[]> {
   const query = `SELECT * FROM patients`;
@@ -141,7 +144,7 @@ export async function getAllPatients(): Promise<IPatient[]> {
 
 /**
  * Get ALL eligibility checks from all patients 
- * @returns 
+ * @returns IEligiblityResult[]
  */
 export async function getAllEligibilityChecks(): Promise<IEligibilityResult[]> {
   const query = `
@@ -173,7 +176,7 @@ export async function getAllEligibilityChecks(): Promise<IEligibilityResult[]> {
 /**
  * Get a patient's information by patientId 
  * @param patientId 
- * @returns 
+ * @returns IPatient or null
  */
 export async function getPatientById(patientId: string): Promise<IPatient | null> {
   const query = `

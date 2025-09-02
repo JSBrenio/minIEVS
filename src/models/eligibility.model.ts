@@ -119,7 +119,7 @@ interface IEligibilityResult {
  * @example
  * {
  *   "patientId": "P123456",
- *   "name": "John Doe",
+ *   "patientName": "John Doe",
  *   "dateOfBirth": "1985-03-15",
  *   "insuranceMemberId": "MBR001",
  *   "insuranceCompanyName": "HealthPlan USA",

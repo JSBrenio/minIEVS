@@ -136,7 +136,7 @@ export async function getAllPatients(): Promise<IPatient[]> {
   const result = await pool.query(query);
   return result.rows.map(row => ({
     patientId: row.patient_id,
-    patientName: row.patientName,
+    patientName: row.name,
     dateOfBirth: row.date_of_birth
   }))
 }

@@ -5,8 +5,8 @@ import { validatePatientIdParam, validatePatientData } from '../middleware';
 
 const patientsRouter: Router = express.Router();
 
-// GET /patients/all - Get all patients
-patientsRouter.get('/all', async (request: Request, response: Response) => {
+// GET /patients/ - Get all patients
+patientsRouter.get('/', async (request: Request, response: Response) => {
     try {
         
         const patients = await getAllPatients();
@@ -18,6 +18,35 @@ patientsRouter.get('/all', async (request: Request, response: Response) => {
 
     } catch (error) {
         console.error('Error getting all patients: ', error);
+        response.status(500).json({
+            message: 'Internal server error',
+        });
+    }
+});
+
+// POST /patients/ - Create patient
+patientsRouter.post('/', validatePatientData, async (request: IPatientPostRequest, response: Response) => {
+    try {
+        const patientData: IPatient = request.body;
+        await addPatient(patientData);
+        
+        response.status(201).json({
+            message: 'Patient created successfully',
+            patient: patientData
+        });
+
+    } catch (error) {
+        console.error('Error creating patient:', error);
+        
+        // Handle duplicate patient error
+        if (error.message?.includes('already exists')) {
+            response.status(409).json({
+                error: 'Conflict',
+                message: error.message
+            });
+            return;
+        }
+        
         response.status(500).json({
             message: 'Internal server error',
         });
@@ -42,35 +71,6 @@ patientsRouter.get('/:patientId', validatePatientIdParam, async (request: Reques
 
     } catch (error) {
         console.error('Error retrieving patient by ID:', error);
-        response.status(500).json({
-            message: 'Internal server error',
-        });
-    }
-});
-
-// POST /patients - Create patient
-patientsRouter.post('/', validatePatientData, async (request: IPatientPostRequest, response: Response) => {
-    try {
-        const patientData: IPatient = request.body;
-        await addPatient(patientData);
-        
-        response.status(201).json({
-            message: 'Patient created successfully',
-            patient: patientData
-        });
-
-    } catch (error) {
-        console.error('Error creating patient:', error);
-        
-        // Handle duplicate patient error
-        if (error.message?.includes('already exists')) {
-            response.status(409).json({
-                error: 'Conflict',
-                message: error.message
-            });
-            return;
-        }
-        
         response.status(500).json({
             message: 'Internal server error',
         });

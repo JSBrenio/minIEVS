@@ -6,8 +6,10 @@ import { EligibilityService } from '../services/eligibility.service';
 const eligibilityRouter: Router = express.Router();
 const eligibilityService = new EligibilityService();
 
-// GET /eligibility/all - Simple test route to get all eligibility records
-eligibilityRouter.get('/all', async (request: Request, response: Response) => {
+/**
+ * GET /eligibility/ - Simple test route to get all eligibility records
+ */
+eligibilityRouter.get('/', async (request: Request, response: Response) => {
     try {
         const data = await eligibilityService.getAllEligibilityChecks();
         

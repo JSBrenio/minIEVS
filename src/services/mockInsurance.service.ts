@@ -43,8 +43,8 @@ export class MockInsuranceService {
     const eligibilityId = `ELG-${Date.now()}`;
     const checkDateTime = new Date().toISOString();
     
-    // Early check for valid health insurances covered from list
-    if (!this.insuranceCompanies.includes(insuranceCompany)) {
+    // Early check for valid health insurances covered from list and if provided an insurance member id
+    if (!this.insuranceCompanies.includes(insuranceCompany) || !insuranceMemberId) {
       return {
         eligibilityId: eligibilityId,
         patientId: patientId,
@@ -53,7 +53,7 @@ export class MockInsuranceService {
         insuranceCompany: insuranceCompany,
         status: "Unknown",
         coverage: undefined,
-        errors: [errorCodes.UNKNOWN_INSURANCE[0]]
+        errors: [insuranceMemberId ? errorCodes.UNKNOWN_INSURANCE[0] : errorCodes.UNKNOWN_INSURANCE[1]]
       }
     }
 

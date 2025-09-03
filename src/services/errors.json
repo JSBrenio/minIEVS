@@ -73,6 +73,10 @@
     {
       "code": "UNKNOWN_INSURANCE",
       "message": "Insurance company not recognized in our system"
+    },
+    {
+      "code": "UNKNOWN_INSURANCE_ID",
+      "message": "Insurance ID not provided"
     }
   ]
 }

@@ -1,6 +1,41 @@
 eligibility_id,patient_id,check_date_time,insurance_member_id,insurance_company_name,service_date,status,deductible,deductible_met,copay,out_of_pocket_max,out_of_pocket_met,errors
-ELG-2024-001,P123456,2024-02-01T10:30:00Z,MBR001,HealthPlan USA,2024-02-01,Active,1500.00,750.00,25.00,5000.00,1200.00,[]
-ELG-2024-002,P123457,2024-02-01T11:15:00Z,MBR002,MediCare Plus,2024-02-01,Active,2000.00,500.00,30.00,6000.00,800.00,[]
-ELG-2024-003,P123458,2024-02-01T14:45:00Z,MBR003,Insurance Corp,2024-02-01,Inactive,1000.00,0.00,20.00,4000.00,0.00,"[{""code"": ""EXPIRED_INSURANCE"", ""message"": ""Patient has no active insurance coverage.""}]"
-ELG-2024-004,P123459,2024-02-15T09:00:00Z,MBR004,BlueCross BlueShield,2024-02-15,Active,1200.00,600.00,20.00,4500.00,900.00,[]
-ELG-2024-005,P123460,2024-02-15T16:30:00Z,INS789012,Aetna Health,2024-02-15,Unknown,1800.00,0.00,35.00,5500.00,0.00,"[{""code"": ""NO_INSURANCE"", ""message"": ""Patient has no active insurance coverage.""}]"
+ELG-2024-001,P123456,2024-02-01T10:30:00Z,INS789045,UnitedHealthCare,2024-02-01,Active,1500.00,750.00,25.00,5000.00,1200.00,[]
+ELG-2024-002,P123457,2024-02-01T11:15:00Z,INS789021,BlueCross BlueShield,2024-02-01,Active,2000.00,500.00,30.00,6000.00,800.00,[]
+ELG-2024-003,P123458,2024-02-01T14:45:00Z,INS789098,Insurance Corp,2024-02-01,Inactive,1000.00,0.00,20.00,4000.00,0.00,"[{""code"": ""EXPIRED_INSURANCE"", ""message"": ""Patient's insurance policy has expired""}]"
+ELG-2024-004,P123459,2024-02-15T09:00:00Z,INS788987,BlueCross BlueShield,2024-02-15,Active,1200.00,600.00,20.00,4500.00,900.00,[]
+ELG-2024-005,P123460,2024-02-15T16:30:00Z,INS788969,Aetna Health,2024-02-15,Unknown,,,,,,"[{""code"": ""NO_INSURANCE"", ""message"": ""Patient has no active insurance coverage""}]"
+ELG-2024-006,P123456,2024-03-15T14:20:00Z,INS789045,UnitedHealthCare,2024-03-15,Active,1500.00,950.00,25.00,5000.00,1450.00,[]
+ELG-2024-007,P123461,2024-03-20T09:45:00Z,INS790123,UnitedHealthCare,2024-03-20,Active,2500.00,1200.00,35.00,7500.00,2100.00,[]
+ELG-2024-008,P123462,2024-03-22T11:30:00Z,INS790145,Cigna,2024-03-22,Inactive,,,,,,"[{""code"": ""POLICY_SUSPENDED"", ""message"": ""Insurance policy is suspended due to non-payment""}]"
+ELG-2024-009,P123463,2024-04-01T08:15:00Z,INS790167,Kaiser Permanente,2024-04-01,Unknown,,,,,,"[{""code"": ""API_MAINTENANCE"", ""message"": ""Insurance company API is currently under maintenance""}]"
+ELG-2024-010,P123464,2024-04-03T13:50:00Z,INS790189,Elevance Health,2024-04-03,Active,1800.00,300.00,40.00,5500.00,650.00,[]
+ELG-2024-011,P123457,2024-04-10T10:25:00Z,INS789021,BlueCross BlueShield,2024-04-10,Active,2000.00,750.00,30.00,6000.00,1250.00,[]
+ELG-2024-012,P123465,2024-04-12T15:40:00Z,INS790201,Molina Healthcare,2024-04-12,Inactive,,,,,,"[{""code"": ""COVERAGE_TERMINATED"", ""message"": ""Insurance coverage was terminated by the employer""}]"
+ELG-2024-013,P123466,2024-04-15T12:10:00Z,INS790223,Invalid Insurance Co,2024-04-15,Unknown,,,,,,"[{""code"": ""UNKNOWN_INSURANCE"", ""message"": ""Insurance company not recognized in our system""}]"
+ELG-2024-014,P123467,2024-05-01T09:30:00Z,INS790229,HealthPlan USA,2024-05-01,Inactive,,,,,,"[{""code"": ""INVALID_MEMBER_ID"", ""message"": ""Insurance member ID is invalid or not found""}]"
+ELG-2024-015,P123468,2024-05-05T14:15:00Z,INS790245,BlueCross BlueShield,2024-05-05,Inactive,,,,,,"[{""code"": ""PLAN_NOT_ACTIVE"", ""message"": ""Insurance plan is not active for the service date requested""}]"
+ELG-2024-016,P123456,2024-05-10T11:45:00Z,INS789045,UnitedHealthCare,2024-05-10,Active,1500.00,1200.00,25.00,5000.00,1800.00,[]
+ELG-2024-017,P123469,2024-05-12T16:20:00Z,INS790267,Aetna Health,2024-05-12,Inactive,,,,,,"[{""code"": ""COVERAGE_EXHAUSTED"", ""message"": ""Annual coverage limit has been reached""}]"
+ELG-2024-018,P123470,2024-05-15T08:50:00Z,INS790289,UnitedHealthCare,2024-05-15,Unknown,,,,,,"[{""code"": ""TIMEOUT_ERROR"", ""message"": ""Insurance company API request timed out after 30 seconds""}]"
+ELG-2024-019,P321654,2024-05-18T13:25:00Z,INS790301,Cigna,2024-05-18,Active,3000.00,0.00,50.00,8000.00,0.00,[]
+ELG-2024-020,P123461,2024-05-20T10:10:00Z,INS790123,UnitedHealthCare,2024-05-20,Active,2500.00,1500.00,35.00,7500.00,2450.00,[]
+ELG-2024-021,P123462,2024-06-01T14:35:00Z,INS790145,Cigna,2024-06-01,Unknown,,,,,,"[{""code"": ""CONNECTION_REFUSED"", ""message"": ""Unable to connect to insurance company API server""}]"
+ELG-2024-022,P123463,2024-06-03T09:15:00Z,INS790167,Kaiser Permanente,2024-06-03,Active,1600.00,800.00,30.00,5200.00,1300.00,[]
+ELG-2024-023,P123464,2024-06-05T15:50:00Z,INS790189,Elevance Health,2024-06-05,Active,1800.00,600.00,40.00,5500.00,1100.00,[]
+ELG-2024-024,P123467,2024-06-08T11:40:00Z,INS790324,HealthPlan USA,2024-06-08,Inactive,,,,,,"[{""code"": ""MEMBER_INFO_MISMATCH"", ""message"": ""Patient information does not match insurance records""}]"
+ELG-2024-025,P123468,2024-06-10T12:55:00Z,INS790245,BlueCross BlueShield,2024-06-10,Inactive,,,,,,"[{""code"": ""DATE_OF_BIRTH_MISMATCH"", ""message"": ""Date of birth does not match insurance company records""}]"
+ELG-2024-026,P123456,2024-06-15T16:10:00Z,INS789045,UnitedHealthCare,2024-06-15,Active,1500.00,1350.00,25.00,5000.00,2200.00,[]
+ELG-2024-027,P123469,2024-06-18T08:25:00Z,INS790267,Aetna Health,2024-06-18,Inactive,,,,,,"[{""code"": ""WAITING_PERIOD"", ""message"": ""Patient is in waiting period for this type of coverage""}]"
+ELG-2024-028,P123470,2024-06-20T13:45:00Z,INS790289,UnitedHealthCare,2024-06-20,Unknown,,,,,,"[{""code"": ""RATE_LIMIT_EXCEEDED"", ""message"": ""Too many requests to insurance API. Please try again later""}]"
+ELG-2024-029,P321654,2024-06-22T10:30:00Z,INS790301,Cigna,2024-06-22,Active,3000.00,250.00,50.00,8000.00,350.00,[]
+ELG-2024-030,P123457,2024-07-01T14:15:00Z,INS789021,BlueCross BlueShield,2024-07-01,Active,2000.00,1100.00,30.00,6000.00,1800.00,[]
+ELG-2024-031,P123461,2024-07-05T09:50:00Z,INS790123,UnitedHealthCare,2024-07-05,Active,2500.00,1850.00,35.00,7500.00,2900.00,[]
+ELG-2024-032,P123462,2024-07-08T11:20:00Z,INS790145,Cigna,2024-07-08,Unknown,,,,,,"[{""code"": ""SERVICE_UNAVAILABLE"", ""message"": ""Insurance verification service is temporarily unavailable""}]"
+ELG-2024-033,P123463,2024-07-10T15:35:00Z,INS790167,Kaiser Permanente,2024-07-10,Active,1600.00,1000.00,30.00,5200.00,1650.00,[]
+ELG-2024-034,P123464,2024-07-12T12:05:00Z,INS790189,Elevance Health,2024-07-12,Active,1800.00,900.00,40.00,5500.00,1500.00,[]
+ELG-2024-035,P123469,2024-07-15T10:40:00Z,,other,2024-07-15,Unknown,,,,,,"[{""code"": ""UNKNOWN_INSURANCE_ID"", ""message"": ""Insurance ID not provided""}]"
+ELG-2024-036,P123456,2024-07-20T16:25:00Z,INS789045,UnitedHealthCare,2024-07-20,Active,1500.00,1450.00,25.00,5000.00,2500.00,[]
+ELG-2024-037,P321654,2024-07-25T13:15:00Z,INS790301,Cigna,2024-07-25,Active,3000.00,500.00,50.00,8000.00,750.00,[]
+ELG-2024-038,P123465,2024-08-01T09:30:00Z,INS790201,Molina Healthcare,2024-08-01,Unknown,,,,,,"[{""code"": ""INVALID_API_KEY"", ""message"": ""Authentication failed with insurance company API""}]"
+ELG-2024-039,P123466,2024-08-05T14:20:00Z,INS790445,BlueCross BlueShield,2024-08-05,Active,2200.00,1100.00,35.00,6500.00,1800.00,[]
+ELG-2024-040,P123467,2024-08-08T11:45:00Z,INS790324,Kaiser Permanente,2024-08-08,Active,1400.00,700.00,25.00,4800.00,1200.00,[]

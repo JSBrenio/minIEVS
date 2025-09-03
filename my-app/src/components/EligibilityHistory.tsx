@@ -18,6 +18,8 @@ import {
 } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import { api } from '../util/api';
+import { formatCurrency, calculateRemaining } from '../util/currency';
+import { formatDateTime, getEligibilityStatusColor } from '../util';
 import { IEligibilityResult } from '../models';
 
 export default function EligibilityHistory() {
@@ -25,6 +27,7 @@ export default function EligibilityHistory() {
   const [historyPatientId, setHistoryPatientId] = useState('');
   const [historyLoading, setHistoryLoading] = useState(false);
   const [recentChecks, setRecentChecks] = useState<IEligibilityResult[]>([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleHistorySearch = async () => {
     if (!historyPatientId) {
@@ -33,6 +36,7 @@ export default function EligibilityHistory() {
     }
 
     setHistoryLoading(true);
+    setHasSearched(true);
     try {
       const response = await api.get<IEligibilityResult[]>(`/eligibility/history/${historyPatientId}`);
       setRecentChecks(response.data);
@@ -41,24 +45,6 @@ export default function EligibilityHistory() {
       setRecentChecks([]);
     } finally {
       setHistoryLoading(false);
-    }
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Active': return 'success';
-      case 'Inactive': return 'error';
-      default: return 'warning';
     }
   };
 
@@ -107,7 +93,7 @@ export default function EligibilityHistory() {
                 {recentChecks.map((check) => (
                   <TableRow key={check.eligibilityId} hover>
                     <TableCell>
-                      {formatDate(check.checkDateTime)}
+                      {formatDateTime(check.checkDateTime)}
                     </TableCell>
                     <TableCell>
                       <Typography variant="body2" fontFamily="monospace">
@@ -117,7 +103,7 @@ export default function EligibilityHistory() {
                     <TableCell>
                       <Chip 
                         label={check.status} 
-                        color={getStatusColor(check.status) as 'success' | 'error' | 'warning'} 
+                        color={getEligibilityStatusColor(check.status)} 
                         size="small" 
                       />
                     </TableCell>
@@ -129,16 +115,63 @@ export default function EligibilityHistory() {
                     </TableCell>
                     <TableCell>
                       {check.coverage ? (
-                        <Box>
-                          <Typography variant="caption" display="block">
-                            Copay: ${check.coverage.copay}
-                          </Typography>
-                          <Typography variant="caption" display="block">
-                            Deductible: ${check.coverage.deductibleMet}/${check.coverage.deductible}
-                          </Typography>
-                          <Typography variant="caption" display="block">
-                            Out-of-Pocket: ${check.coverage.outOfPocketMet}/${check.coverage.outOfPocketMax}
-                          </Typography>
+                        <Box sx={{ minWidth: 220 }}>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Copay:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold">
+                              ${formatCurrency(check.coverage.copay)}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Deductible Total:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold">
+                              ${formatCurrency(check.coverage.deductible)}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Deductible Met:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold">
+                              ${formatCurrency(check.coverage.deductibleMet)}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Deductible Remaining:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold" color="primary">
+                              ${formatCurrency(calculateRemaining(check.coverage.deductible, check.coverage.deductibleMet))}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Out-of-Pocket Max:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold">
+                              ${formatCurrency(check.coverage.outOfPocketMax)}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Out-of-Pocket Met:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold">
+                              ${formatCurrency(check.coverage.outOfPocketMet)}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Typography variant="caption" color="text.secondary">
+                              Out-of-Pocket Remaining:
+                            </Typography>
+                            <Typography variant="caption" fontWeight="bold" color="primary">
+                              ${formatCurrency(calculateRemaining(check.coverage.outOfPocketMax, check.coverage.outOfPocketMet))}
+                            </Typography>
+                          </Box>
                         </Box>
                       ) : (
                         <Box>
@@ -170,7 +203,7 @@ export default function EligibilityHistory() {
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}>
             <CircularProgress />
           </Box>
-        ) : historyPatientId ? (
+        ) : hasSearched && historyPatientId ? (
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 200 }}>
             <Typography variant="body2" color="text.secondary">
               No recent eligibility checks found for Patient ID: {historyPatientId}

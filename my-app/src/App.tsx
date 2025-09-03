@@ -5,8 +5,6 @@ import {
   Container,
   Typography,
   Box,
-  Card,
-  CardContent,
   AppBar,
   Toolbar,
   Tabs,

@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IPatient } from '../models';
 import { api } from '../util/api';
+import { formatDateOnly } from '../util';
 
 export default function PatientManagement() {
   const [patients, setPatients] = useState<IPatient[]>([]);
@@ -30,7 +31,7 @@ export default function PatientManagement() {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await api.get('/patients/all');
+        const response = await api.get('/patients/');
         setPatients(response.data.data);
       } catch (error) {
         console.error('Error fetching patients:', error);
@@ -40,16 +41,6 @@ export default function PatientManagement() {
     fetchPatients();
   }, []);
 
-  const formatDateOfBirth = (dateString: string) => {
-    if (!dateString) return '';
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric'
-    });
-  };
-
   const patientColumns: GridColDef[] = [
     { field: 'patientId', headerName: 'Patient ID', width: 150 },
     { field: 'patientName', headerName: 'Patient Name', width: 200 },
@@ -58,7 +49,7 @@ export default function PatientManagement() {
       headerName: 'Date of Birth', 
       width: 150,
       renderCell: (params: GridRenderCellParams) => (
-        <span>{formatDateOfBirth(params.value as string)}</span>
+        <span>{formatDateOnly(params.value as string)}</span>
       )
     },
     {

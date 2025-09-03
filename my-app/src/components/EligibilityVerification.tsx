@@ -19,6 +19,8 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { api } from '../util/api';
+import { formatCurrency, calculateRemaining } from '../util/currency';
+import { formatDateTime, getEligibilityStatusColor } from '../util';
 import { IEligibilityCheck, IEligibilityResult } from '../models';
 import EligibilityHistory from './EligibilityHistory';
 
@@ -85,24 +87,6 @@ export default function EligibilityVerification() {
       });
     } finally {
       setEligibilityLoading(false);
-    }
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Active': return 'success';
-      case 'Inactive': return 'error';
-      default: return 'warning';
     }
   };
 
@@ -254,7 +238,7 @@ export default function EligibilityVerification() {
                             Check Date & Time
                           </Typography>
                           <Typography variant="body1">
-                            {formatDate(eligibilityResult.checkDateTime)}
+                            {formatDateTime(eligibilityResult.checkDateTime)}
                           </Typography>
                         </Box>
                         <Box>
@@ -279,7 +263,7 @@ export default function EligibilityVerification() {
                           </Typography>
                           <Chip 
                             label={eligibilityResult.status} 
-                            color={getStatusColor(eligibilityResult.status) as 'success' | 'error' | 'warning'} 
+                            color={getEligibilityStatusColor(eligibilityResult.status)} 
                             size="small" 
                           />
                         </Box>
@@ -301,7 +285,7 @@ export default function EligibilityVerification() {
                                 Copay
                               </Typography>
                               <Typography variant="h5" component="div">
-                                ${eligibilityResult.coverage.copay}
+                                ${formatCurrency(eligibilityResult.coverage.copay)}
                               </Typography>
                             </CardContent>
                           </Card>
@@ -312,10 +296,10 @@ export default function EligibilityVerification() {
                                 Deductible Remaining
                               </Typography>
                               <Typography variant="h5" component="div">
-                                ${eligibilityResult.coverage.deductible - eligibilityResult.coverage.deductibleMet}
+                                ${formatCurrency(calculateRemaining(eligibilityResult.coverage.deductible, eligibilityResult.coverage.deductibleMet))}
                               </Typography>
                               <Typography variant="caption" color="text.secondary">
-                                ${eligibilityResult.coverage.deductibleMet} of ${eligibilityResult.coverage.deductible} met
+                                ${formatCurrency(eligibilityResult.coverage.deductibleMet)} of ${formatCurrency(eligibilityResult.coverage.deductible)} met
                               </Typography>
                             </CardContent>
                           </Card>
@@ -326,10 +310,10 @@ export default function EligibilityVerification() {
                                 Out-of-Pocket Remaining
                               </Typography>
                               <Typography variant="h5" component="div">
-                                ${eligibilityResult.coverage.outOfPocketMax - eligibilityResult.coverage.outOfPocketMet}
+                                ${formatCurrency(calculateRemaining(eligibilityResult.coverage.outOfPocketMax, eligibilityResult.coverage.outOfPocketMet))}
                               </Typography>
                               <Typography variant="caption" color="text.secondary">
-                                ${eligibilityResult.coverage.outOfPocketMet} of ${eligibilityResult.coverage.outOfPocketMax} met
+                                ${formatCurrency(eligibilityResult.coverage.outOfPocketMet)} of ${formatCurrency(eligibilityResult.coverage.outOfPocketMax)} met
                               </Typography>
                             </CardContent>
                           </Card>
@@ -347,7 +331,7 @@ export default function EligibilityVerification() {
                               Total Deductible
                             </Typography>
                             <Typography variant="body1">
-                              ${eligibilityResult.coverage.deductible}
+                              ${formatCurrency(eligibilityResult.coverage.deductible)}
                             </Typography>
                           </Box>
                           <Box>
@@ -355,7 +339,7 @@ export default function EligibilityVerification() {
                               Deductible Met
                             </Typography>
                             <Typography variant="body1">
-                              ${eligibilityResult.coverage.deductibleMet}
+                              ${formatCurrency(eligibilityResult.coverage.deductibleMet)}
                             </Typography>
                           </Box>
                           <Box>
@@ -363,7 +347,7 @@ export default function EligibilityVerification() {
                               Copay Amount
                             </Typography>
                             <Typography variant="body1">
-                              ${eligibilityResult.coverage.copay}
+                              ${formatCurrency(eligibilityResult.coverage.copay)}
                             </Typography>
                           </Box>
                           <Box>
@@ -371,7 +355,7 @@ export default function EligibilityVerification() {
                               Out-of-Pocket Max
                             </Typography>
                             <Typography variant="body1">
-                              ${eligibilityResult.coverage.outOfPocketMax}
+                              ${formatCurrency(eligibilityResult.coverage.outOfPocketMax)}
                             </Typography>
                           </Box>
                           <Box>
@@ -379,7 +363,7 @@ export default function EligibilityVerification() {
                               Out-of-Pocket Met
                             </Typography>
                             <Typography variant="body1">
-                              ${eligibilityResult.coverage.outOfPocketMet}
+                              ${formatCurrency(eligibilityResult.coverage.outOfPocketMet)}
                             </Typography>
                           </Box>
                         </Box>

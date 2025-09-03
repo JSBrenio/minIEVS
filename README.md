@@ -18,3 +18,8 @@ PostgreSQL
 ## Frontend
 
 React.js (Extra Credit)
+
+### Libraries
+- axios
+- Material UI (MUI)
+  - CRUD template
